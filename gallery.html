@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Holla Bells</title>
+    <link rel="icon" href="images/companyLogo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9e22de27e5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- ===== Sidebar Navigation ===== -->
+    <nav class="navbar navbar-expand-md topbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><img src="images/companyLogo.png" alt="" width="34" height="34" style="border-radius:8px">Holla Bells</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav" aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="topnav">
+                <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="location.html">Find us</a></li>
+                    <li class="nav-item"><a class="btn btn-gold btn-sm ms-md-2 px-3" href="checkout.html"><i class="fa-solid fa-basket-shopping"></i> Cart <span class="badge cart-badge" id="cart-count">0</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ===== End Sidebar ===== -->
+
+    <!-- ===== Product Cards Section ===== -->
+    <section class="container py-5 my-5" id="products">
+        <h2 class="text-center mb-5">Our Products</h2>
+
+
+        <div class="row g-4">
+
+            <!-- ── Product Card 1: Adobo ── -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="images/adobo_folder/adobo.jpg" class="card-img-top" alt="Adobo">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Adobo</h5>
+                        <p class="card-text">A classic Filipino dish — meat slow-cooked in vinegar, soy sauce, garlic, and bay leaves.</p>
+
+                        <p class="fw-bold text-primary" id="price-display-1">₱500</p>
+
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <label for="size-select-1" class="form-label">Size:</label>
+
+                                <select class="form-select" id="size-select-1"
+                                        onchange="updatePriceDisplay(this, 'price-display-1')"
+                                        style="width: 150px;">
+                                    <option value="small"  data-price="500">Small</option>
+                                    <option value="medium" data-price="750">Medium</option>
+                                    <option value="large"  data-price="1000">Large</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+
+                                <button class="btn btn-primary"
+                                        onclick="addCurrentProductToCart('Adobo', 'images/adobo_folder/adobo.jpg', document.getElementById('size-select-1'))">
+                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <a href="adobo.html" class="btn btn-outline-primary">See Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Product Card 2: Tinola ── -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="images/tinola_folder/tinola.jpg" class="card-img-top" alt="Tinola">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Tinola</h5>
+                        <p class="card-text">A light Filipino soup with chicken, green papaya, and malunggay leaves in ginger broth.</p>
+
+                        <p class="fw-bold text-primary" id="price-display-2">₱500</p>
+
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <label for="size-select-2" class="form-label">Size:</label>
+                                <select class="form-select" id="size-select-2"
+                                        onchange="updatePriceDisplay(this, 'price-display-2')"
+                                        style="width: 150px;">
+                                    <option value="small"  data-price="500">Small</option>
+                                    <option value="medium" data-price="750">Medium</option>
+                                    <option value="large"  data-price="1000">Large</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary"
+                                        onclick="addCurrentProductToCart('Tinola', 'images/tinola_folder/tinola.jpg', document.getElementById('size-select-2'))">
+                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <a href="tinola.html" class="btn btn-outline-primary">See Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Product Card 3: Kaldereta ── -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="images/kalderetea/cadereta.jpg" class="card-img-top" alt="Kaldereta">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Kaldereta</h5>
+                        <p class="card-text">A rich Filipino tomato-based stew with tender meat, potatoes, and bell peppers.</p>
+
+                        <p class="fw-bold text-primary" id="price-display-3">₱500</p>
+
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <label for="size-select-3" class="form-label">Size:</label>
+                                <select class="form-select" id="size-select-3"
+                                        onchange="updatePriceDisplay(this, 'price-display-3')"
+                                        style="width: 150px;">
+                                    <option value="small"  data-price="500">Small</option>
+                                    <option value="medium" data-price="750">Medium</option>
+                                    <option value="large"  data-price="1000">Large</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary"
+                                        onclick="addCurrentProductToCart('Kaldereta', 'images/kalderetea/cadereta.jpg', document.getElementById('size-select-3'))">
+                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <a href="kaldereta.html" class="btn btn-outline-primary">See Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="images/sinigang_sinigang.jpg" class="card-img-top" alt="Sinigang">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Sinigang</h5>
+                        <p class="card-text">A tangy tamarind soup with pork or shrimp and fresh vegetables.</p>
+                        <p class="fw-bold text-primary" id="price-display-4">₱500</p>
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <label for="size-select-4" class="form-label">Size:</label>
+                                <select class="form-select" id="size-select-4" onchange="updatePriceDisplay(this, 'price-display-4')" style="width: 150px;">
+                                    <option value="small"  data-price="500">Small</option>
+                                    <option value="medium" data-price="750">Medium</option>
+                                    <option value="large"  data-price="1000">Large</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" onclick="addCurrentProductToCart('Sinigang', 'images/sinigang_sinigang.jpg', document.getElementById('size-select-4'))">
+                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <a href="sinigang.html" class="btn btn-outline-primary">See Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="images/karekare.jpg" class="card-img-top" alt="Kare-Kare">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Kare-Kare</h5>
+                        <p class="card-text">A Filipino stew in a rich, savory peanut sauce with tender meat and vegetables.</p>
+                        <p class="fw-bold text-primary" id="price-display-5">₱500</p>
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <label for="size-select-5" class="form-label">Size:</label>
+                                <select class="form-select" id="size-select-5" onchange="updatePriceDisplay(this, 'price-display-5')" style="width: 150px;">
+                                    <option value="small"  data-price="500">Small</option>
+                                    <option value="medium" data-price="750">Medium</option>
+                                    <option value="large"  data-price="1000">Large</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" onclick="addCurrentProductToCart('Kare-Kare', 'images/karekare.jpg', document.getElementById('size-select-5'))">
+                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <a href="karekare.html" class="btn btn-outline-primary">See Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="images/chicharon Bulaklak_folder/Chicharon Bulaklak.jpg" class="card-img-top" alt="Chicharon Bulaklak">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Chicharon Bulaklak</h5>
+                        <p class="card-text">Crunchy deep-fried ruffled pork, perfect with a spiced vinegar dip.</p>
+                        <p class="fw-bold text-primary" id="price-display-6">₱500</p>
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <label for="size-select-6" class="form-label">Size:</label>
+                                <select class="form-select" id="size-select-6" onchange="updatePriceDisplay(this, 'price-display-6')" style="width: 150px;">
+                                    <option value="small"  data-price="500">Small</option>
+                                    <option value="medium" data-price="750">Medium</option>
+                                    <option value="large"  data-price="1000">Large</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" onclick="addCurrentProductToCart('Chicharon Bulaklak', 'images/chicharon Bulaklak_folder/Chicharon Bulaklak.jpg', document.getElementById('size-select-6'))">
+                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <a href="chicharon-bulaklak.html" class="btn btn-outline-primary">See Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="images/empanada_folder/Empanada.jpg" class="card-img-top" alt="Empanada">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Empanada</h5>
+                        <p class="card-text">A flaky golden pastry filled with seasoned meat, potato, and vegetables.</p>
+                        <p class="fw-bold text-primary" id="price-display-7">₱500</p>
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <label for="size-select-7" class="form-label">Size:</label>
+                                <select class="form-select" id="size-select-7" onchange="updatePriceDisplay(this, 'price-display-7')" style="width: 150px;">
+                                    <option value="small"  data-price="500">Small</option>
+                                    <option value="medium" data-price="750">Medium</option>
+                                    <option value="large"  data-price="1000">Large</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" onclick="addCurrentProductToCart('Empanada', 'images/empanada_folder/Empanada.jpg', document.getElementById('size-select-7'))">
+                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <a href="empanada.html" class="btn btn-outline-primary">See Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="images/sanghai_folder/sanghai.jpg" class="card-img-top" alt="Lumpiang Shanghai">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Lumpiang Shanghai</h5>
+                        <p class="card-text">Crispy spring rolls with seasoned ground pork, served with sweet chili sauce.</p>
+                        <p class="fw-bold text-primary" id="price-display-8">₱500</p>
+                        <div class="mt-auto">
+                            <div class="mb-3">
+                                <label for="size-select-8" class="form-label">Size:</label>
+                                <select class="form-select" id="size-select-8" onchange="updatePriceDisplay(this, 'price-display-8')" style="width: 150px;">
+                                    <option value="small"  data-price="500">Small</option>
+                                    <option value="medium" data-price="750">Medium</option>
+                                    <option value="large"  data-price="1000">Large</option>
+                                </select>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary" onclick="addCurrentProductToCart('Lumpiang Shanghai', 'images/sanghai_folder/sanghai.jpg', document.getElementById('size-select-8'))">
+                                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <a href="lumpiang-shanghai.html" class="btn btn-outline-primary">See Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ===== End Product Cards ===== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="store.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

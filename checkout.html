@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Out | Holla Bells</title>
+    <link rel="icon" href="images/companyLogo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9e22de27e5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- ===== Sidebar Navigation ===== -->
+    <nav class="navbar navbar-expand-md topbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><img src="images/companyLogo.png" alt="" width="34" height="34" style="border-radius:8px">Holla Bells</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav" aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="topnav">
+                <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="location.html">Find us</a></li>
+                    <li class="nav-item"><a class="btn btn-gold btn-sm ms-md-2 px-3" href="checkout.html"><i class="fa-solid fa-basket-shopping"></i> Cart <span class="badge cart-badge" id="cart-count">0</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ===== End Sidebar ===== -->
+
+    <!-- ===== Checkout Page Content ===== -->
+    <div class="container mt-5 main-content">
+        <div class="row">
+
+            <!-- Left column: list of cart items injected by renderCart() in store.js -->
+            <div class="col-md-8">
+                <h3 class="mb-4">Your Cart</h3>
+                <!-- store.js injects cart item HTML into this div on DOMContentLoaded -->
+                <div id="cart-items-container"></div>
+            </div>
+
+            <!-- Right column: order summary with subtotal, shipping, and total -->
+            <div class="col-md-4">
+                <div class="cart-summary bg-light p-4 rounded shadow-sm">
+                    <h5 class="mb-3">Order Summary</h5>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between mb-2">
+                            <span>Subtotal:</span>
+                            <!-- Updated by renderCart() -->
+                            <span id="cart-subtotal">₱0.00</span>
+                        </li>
+                        <li class="d-flex justify-content-between mb-2">
+                            <span>Shipping Fee:</span>
+                            <span id="cart-shipping">₱50.00</span>
+                        </li>
+                        <hr>
+                        <li class="d-flex justify-content-between mb-4">
+                            <span class="h5">Total:</span>
+                            <!-- Updated by renderCart() -->
+                            <span class="h5" id="cart-total">₱0.00</span>
+                        </li>
+                    </ul>
+                    
+                    <button id="checkout-btn"
+                            class="btn btn-dark w-100 py-2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#confirmCheckoutModal"
+                            disabled>
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== End Checkout ===== -->
+
+    <!-- ===== Confirmation Modal ===== -->
+    <div class="modal fade" id="confirmCheckoutModal" tabindex="-1" aria-labelledby="confirmCheckoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmCheckoutModalLabel">Confirm Your Order</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to place this order?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirm-order-btn">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- store.js must be loaded AFTER bootstrap.bundle.js because it uses the 'bootstrap' object -->
+    <script src="store.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

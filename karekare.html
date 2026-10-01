@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kare-Kare | Holla Bells</title>
+    <link rel="icon" href="images/companyLogo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+ 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9e22de27e5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- ===== Sidebar Navigation ===== -->
+    <nav class="navbar navbar-expand-md topbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><img src="images/companyLogo.png" alt="" width="34" height="34" style="border-radius:8px">Holla Bells</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topnav" aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="topnav">
+                <ul class="navbar-nav ms-auto align-items-md-center gap-md-2">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="location.html">Find us</a></li>
+                    <li class="nav-item"><a class="btn btn-gold btn-sm ms-md-2 px-3" href="checkout.html"><i class="fa-solid fa-basket-shopping"></i> Cart <span class="badge cart-badge" id="cart-count">0</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ===== End Sidebar ===== -->
+
+    <!-- ===== Product Detail Page ===== -->
+    <div class="container mt-5 main-content">
+        <div class="row">
+
+            <!-- Left column: main image + thumbnail strip -->
+            <div class="col-md-6 mb-3">
+                <img src="images/karekare.jpg"
+                     alt="Kare-Kare"
+                     class="img-fluid rounded mb-3 product-image"
+                     id="mainImage">
+
+                <div class="d-inline-flex p-2 gap-2">
+                    <img src="images/placeholder-1-e1533569576673.webp" alt="Kare-Kare view 1"
+                         class="thumbnail rounded active"
+                         onclick="changeImage(event, this.src)">
+                    <img src="images/placeholder-1-e1533569576673.webp" alt="Kare-Kare view 2"
+                         class="thumbnail rounded"
+                         onclick="changeImage(event, this.src)">
+                    <img src="images/placeholder-1-e1533569576673.webp" alt="Kare-Kare view 3"
+                         class="thumbnail rounded"
+                         onclick="changeImage(event, this.src)">
+                </div>
+            </div>
+
+            <!-- Right column: product info, size picker, add-to-cart -->
+            <div class="col-md-6">
+                <h2 class="mb-3">Kare-Kare</h2>
+
+                <div class="mb-3">
+                    <span class="h4 me-2" id="price-display">₱500</span>
+                </div>
+
+                <div class="mb-3">
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <i class="fa-regular fa-star-half-stroke text-warning"></i>
+                    <span class="ms-2">4.5</span>
+                </div>
+
+                <p class="mb-4">
+                    Kare-Kare is a classic Filipino oxtail stew cooked in a rich, creamy peanut sauce
+                    with eggplant, banana blossom, and string beans. Traditionally served with
+                    bagoong (shrimp paste) on the side for a perfect salty contrast.
+                </p>
+
+                <div class="mb-4">
+                    <label for="size-select" class="form-label">Size:</label>
+                    <select class="form-select" id="size-select"
+                            onchange="updatePriceDisplay()"
+                            style="width: 150px;">
+                        <option value="small"  data-price="500">Small</option>
+                        <option value="medium" data-price="750">Medium</option>
+                        <option value="large"  data-price="1000">Large</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary btn-lg mb-3 me-2"
+                        onclick="addCurrentProductToCart('Kare-Kare', 'images/karekare.jpg')">
+                    <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <!-- ===== End Product Detail ===== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="store.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,864 @@
+
+
+
+/* 
+   1. FONTS & ROOT VARIABLES
+   */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --body-color:          #E4E9F7;
+    --sidebar-color:       #FFF;
+    --primary-color:       #695CFE;
+    --primary-color-light: #F6F5FF;
+    --toggle-color:        #DDDD;
+    --text-color:          #707070;
+
+    /* Transitions */
+    --tran-02: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.4s ease;
+    --tran-05: all 0.5s ease;
+}
+
+
+/*
+   2. RESET & BASE
+    */
+
+/* Remove default margins/padding; use border-box on everything */
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--body-color);
+    transition: var(--tran-04);
+}
+
+
+/*
+   3. SIDEBAR
+  */
+
+/* Fixed left sidebar — 250px open, 88px collapsed */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+    transition: var(--tran-03);
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.sidebar.close {
+    width: 88px;
+}
+
+/* Hide nav text labels when collapsed */
+.sidebar.close .text {
+    opacity: 0;
+}
+
+.sidebar .text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.sidebar .image {
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .image-text img {
+    width: 40px;
+    border-radius: 6px;
+}
+
+/* Header is relative so the toggle arrow can be absolutely positioned */
+.sidebar header {
+    position: relative;
+}
+
+.sidebar header .image-text {
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text .name {
+    font-weight: 600;
+}
+
+/* Arrow button that collapses / expands the sidebar */
+.sidebar header .toggle {
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%);
+    height: 25px;
+    width: 25px;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--sidebar-color);
+    font-size: 22px;
+}
+
+/* Flip arrow when sidebar is collapsed */
+.sidebar.close header .toggle {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Nav list items */
+.sidebar li {
+    height: 50px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar li .icon,
+.sidebar li .text {
+    color: var(--text-color);
+    transition: var(--tran-02);
+}
+
+.sidebar li .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    font-size: 20px;
+}
+
+.sidebar li a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: var(--tran-04);
+}
+
+/* Highlight on hover */
+.sidebar li a:hover {
+    background-color: var(--primary-color);
+}
+
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text {
+    color: var(--sidebar-color);
+}
+
+/* Menu bar — flex column so dark toggle sits at the bottom */
+.sidebar .menu-bar {
+    height: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar .menu-links {
+    padding: 20px 0;
+}
+
+
+/* 
+   4. SIDEBAR: DARK MODE TOGGLE (moon/sun switch)
+    */
+
+.menu-bar .mode {
+    position: relative;
+    border-radius: 6px;
+    background: var(--primary-color-light);
+}
+
+.menu-bar .mode .moon-sun {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.menu-bar .mode i {
+    position: absolute;
+    left: 20px;
+    transition: var(--tran-03);
+}
+
+/* Text on Dark And light Mode*/
+.menu-bar .mode .mode-text {
+    padding-left: 60px;
+    padding-right: 70px;
+    flex: 1;
+}
+
+/* Sun hidden in light mode; moon visible */
+.menu-bar .mode i.sun  { opacity: 0; }
+.menu-bar .mode i.moon { opacity: 1; }
+
+/* Toggle switch pill */
+.menu-bar .mode .toggle-switch {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: 60px;
+    cursor: pointer;
+    background: var(--primary-color-light);
+}
+
+.toggle-switch .switch {
+    position: relative;
+    height: 22px;
+    width: 44px;
+    border-radius: 25px;
+    background: var(--toggle-color);
+}
+
+/* Switch knob — starts on the left (light mode) */
+.switch::before {
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background: var(--sidebar-color);
+    transition: var(--tran-03);
+}
+
+/* =
+   5. NAVIGATION & NAVBAR
+   */
+
+.navbar {
+    background-color: orangered;
+    text-align: left;
+    padding: 25px 60px;
+    display: flex;
+}
+
+
+/* 
+   6. MAIN CONTENT LAYOUT
+*/
+
+/* Offset so content clears the collapsed sidebar */
+.main-content {
+    margin-left: 88px;
+    transition: var(--tran-03);
+    padding: 20px;
+}
+
+/* Wider offset when sidebar is open */
+.sidebar:not(.close) ~ .main-content {
+    margin-left: 250px;
+}
+
+
+footer,
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: relative; /* not fixed — stays in normal document flow */
+}
+
+
+
+/*
+   7. HOME / INDEX PAGE
+ */
+/* Full-page background image */
+body.background {
+    background-image: url('images/familiy_eading luch.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;      /* FIX: ensures bg covers full viewport, no bleed below */
+}
+
+/* Semi-transparent overlay — covers everything to the right of the sidebar */
+.layer {
+    background-color: rgba(211, 211, 211, 0.5);
+    position: relative;
+    left: 88px;                    
+    width: calc(100% - 88px);
+    min-height: 100vh;            
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px 80px;       
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+
+.sidebar:not(.close) ~ .layer {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+/* Centered welcome / logo box — vertical layout, logo on top */
+.logo-container {
+    width: 100%;
+    max-width: 720px;
+    border: #18191A solid 1px;
+    padding: 20px;
+    background-color: rgba(211, 211, 211, 0.825);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.logo-text {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 10px 0 6px 0;
+    text-align: center;
+}
+
+.logo-description {
+    font-size: 0.95em;
+    color: #444;
+    margin: 0;
+    text-align: center;
+}
+
+/* Logo image — */
+.logo-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.companyLogo {
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Meal category image grid (Lunch / Dinner / Breakfast) */
+.image-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    padding-bottom: 20px;           
+}
+
+.image-grid img {
+    border-radius: 20px;
+    transition: transform 0.2s;
+    object-fit: cover;
+    max-width: 100%;                
+}
+
+.image-grid img:hover {
+    transform: scale(1.05);
+}
+
+.food-image {
+    width: 300px;
+    height: 200px;
+    display: block;
+    margin: 20px auto 0;
+}
+
+
+
+/*  8. PRODUCT CARDS (Gallery page) */
+
+.item-card {
+    border: 2px solid #e2e2e2;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.item-image {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.item-content {
+    padding: 12px 14px;
+}
+
+.item-title {
+    margin: 0 0 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.item-desc {
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.best-pick-title {
+    margin: 0 0 6px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.cards-column {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin: 24px auto;
+    padding: 0 12px;
+    justify-content: center;
+}
+
+/* Legacy 5-column shop grid */
+.shop {
+    display: grid;
+    grid-template-columns: repeat(5, 223px);
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.item {
+    border: #18191A solid 2px;
+    border-radius: 4px;
+}
+
+.item-name {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+details {
+    font-size: 1em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-to-cart {
+    background-color: #695CFE;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 10px auto;
+}
+
+
+/* 
+   9. PRODUCT DETAIL PAGE
+*/
+
+/* Large main product photo */
+.product-image {
+    max-height: 400px;
+    object-fit: cover;
+}
+
+/* Thumbnail strip below main photo */
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    opacity: 1;
+}
+
+/* Hover overlay */
+.overlay {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.5s ease;
+    background-color: #008CBA;
+}
+
+
+/* 
+   10. CART & CHECKOUT
+   */
+
+.cart-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.product-img {
+    max-width: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Order summary panel */
+.cart-summary {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cart-summary .total-price {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.cart-summary .btn {
+    width: 100%;
+    padding: 12px;
+}
+
+.cart-summary .btn:disabled {
+    background-color: #ddd;
+}
+
+.btn-checkout {
+    background-color: #333;
+    color: white;
+    border-radius: 25px;
+}
+
+.btn-checkout:hover {
+    background-color: #444;
+}
+
+
+/* 
+   11. CONTACT / LOCATION PAGE
+   */
+
+.btn-custom {
+    background-color:  #695CFE !important;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-custom:hover {
+    background-color:  #695CFE;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.contact-icon {
+    color: #008CBA;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-icon:hover {
+    color: #008CBA;
+    transform: scale(1.2);
+}
+ /* 12 food iteam */
+/* The <a> tag itself becomes the positioning parent */
+.food-card {
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+    overflow: hidden;       /* clips the overlay to the card's rounded corners */
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Keep the image filling the card */
+.food-card img {
+    display: block;
+    border-radius: 0;       /* border-radius handled by the parent now */
+    transition: transform 0.3s ease;
+}
+
+/* Slight zoom on the image when hovered */
+.food-card:hover img {
+    transform: scale(1.07);
+}
+
+/* Dark semi-transparent overlay — hidden by default */
+.food-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.50);  /* dark tint over the image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;                        /* invisible until hover */
+    transition: opacity 0.3s ease;
+}
+
+/* Reveal the overlay on hover */
+.food-card:hover .food-card-overlay {
+    opacity: 1;
+}
+
+/* Dish name label */
+.food-card-overlay span  {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+    padding: 8px 16px;
+    border-radius: 8px;
+
+}
+
+/* 
+   14. DARK MODE
+   */
+
+/* ── CSS variable overrides (affects all var() references above) ── */
+body.dark {
+    --body-color:          #18191A;
+    --sidebar-color:       #242526;
+    --primary-color:       #3A3B3C;
+    --primary-color-light: #3A3B3C;
+    --toggle-color:        #FFF;
+    --text-color:          #ccc;
+
+    /* Page background & default text */
+    background-color: #18191A;
+    color: #E0E0E0;
+}
+
+/* ── Sidebar: toggle arrow ──
+ 
+body.dark .sidebar header .toggle                 { color: var(--text-color); }
+body.dark .sidebar.close header .toggle           { transform: translateY(-50%) rotate(180deg); }
+body.dark .sidebar:not(.close) header .toggle     { transform: translateY(-50%) rotate(0deg); }
+
+/* ── Sidebar nav hover ── */
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text               { color: var(--text-color); }
+
+/* ── Moon/sun icon colors ──
+   FIX: icons had no color set so they could vanish against
+   certain backgrounds. Moon = indigo, Sun = warm yellow       */
+.menu-bar .mode i.moon                            { color: #7c83fd; }
+.menu-bar .mode i.sun                             { color: #f5c518; }
+
+/* Swap visibility when dark mode is active */
+body.dark .menu-bar .mode i.sun                   { opacity: 1; }
+body.dark .menu-bar .mode i.moon                  { opacity: 0; }
+
+/* ── Switch knob slides right ── */
+body.dark .switch::before                         { left: 24px; }
+
+/* ── Headings ── */
+body.dark h1, body.dark h2, body.dark h3,
+body.dark h4, body.dark h5, body.dark h6         { color: #F0F0F0; }
+
+/* ── Body text ──
+   FIX: scoped away from sidebar elements so the broad 'span'
+   rule doesn't bleed into the sidebar icon labels              */
+body.dark .main-content p,
+body.dark .main-content span,
+body.dark .main-content label,
+body.dark .main-content small,
+body.dark section p,
+body.dark section span,
+body.dark section label,
+body.dark section small,
+body.dark .card p,
+body.dark .card span,
+body.dark .card small                             { color: #CCCCCC; }
+
+/* Mode text label (Dark Mode / Light Mode) inside the sidebar */
+body.dark .mode-text                              { color: var(--text-color); }
+
+/* ── Home page ── */
+body.dark .layer                           { background-color: rgba(30, 30, 30, 0.85); }
+body.dark .logo-container                  { background-color: rgba(36, 37, 38, 0.9); border-color: #3A3B3C; color: #E0E0E0; }
+body.dark .image-grid a,
+body.dark .image-grid b                    { color: #E0E0E0; }
+
+/* ── Bootstrap cards ── */
+body.dark .card                            { background-color: #242526; border-color: #3A3B3C; color: #E0E0E0; }
+body.dark .card-title                      { color: #F0F0F0; }
+body.dark .card-text                       { color: #CCCCCC; }
+
+/* ── Item cards ── */
+body.dark .item-card                       { background-color: #242526; border-color: #3A3B3C; }
+body.dark .item-desc                       { color: #AAAAAA; }
+
+/* ── Form inputs & dropdowns ── */
+body.dark .form-select                     { background-color: #3A3B3C; color: #E0E0E0; border-color: #555; }
+body.dark .form-control                    { background-color: #3A3B3C; color: #E0E0E0; border-color: #555; }
+body.dark .form-control::placeholder       { color: #999; }
+body.dark .form-label                      { color: #CCCCCC; }
+
+/* ── Product detail page ── */
+body.dark .main-content                    { background-color: transparent; color: #E0E0E0; }
+body.dark .thumbnail                       { border: 2px solid #555; }
+body.dark .thumbnail.active,
+body.dark .thumbnail:hover                 { border-color: #aaa; }
+
+/* ── Cart & checkout ── */
+body.dark .cart-summary                    { background-color: #242526 !important; border-color: #3A3B3C; color: #E0E0E0; }
+body.dark .cart-item                       { border-bottom-color: #3A3B3C; }
+body.dark .bg-light                        { background-color: #242526 !important; color: #E0E0E0; }
+body.dark .badge.bg-secondary              { background-color: #555 !important; }
+body.dark .alert-warning                   { background-color: #3d3200; border-color: #6b5700; color: #ffe082; }
+
+/* ── Contact page ── */
+body.dark #contact                         { color: #E0E0E0; }
+
+/* ── Dividers, footer, links ── */
+body.dark hr                               { border-color: #3A3B3C; }
+body.dark .footer,
+body.dark footer                           { background-color: #111; color: #AAAAAA; }
+body.dark footer a                         { color: #90CAF9; }
+
+/*
+   15. TOAST NOTIFICATIONS
+   */
+
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1056; /* Higher than most Bootstrap components */
+    width: auto;
+    max-width: 350px;
+}
+
+.toast-message {
+    background-color: #28a745; /* Success green */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.4s ease-in-out;
+}
+
+.toast-message.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+
+/*
+   16. BOOTSTRAP OVERRIDES (MODAL)
+   */
+
+body.dark .modal-content {
+    background-color: #242526;
+    color: #E0E0E0;
+    border-color: #3A3B3C;
+}
+
+body.dark .modal-header,
+body.dark .modal-footer {
+    border-color: #3A3B3C;
+}
+
+body.dark .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/*
+   17. CAROUSEL CUSTOMIZATIONS
+   */
+
+/* Style for the carousel inner container */
+.meal-carousel .carousel-inner {
+    border-radius: 20px;
+}
+
+/* Set a consistent aspect ratio for carousel images to prevent layout jump */
+.meal-carousel .food-card img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    max-height: 480px; /* Match the max-width of the carousel */
+}
+
+/* Style for carousel indicators on hover */
+.meal-carousel .carousel-indicators [data-bs-target] {
+    transition: all 0.2s ease-in-out;
+}
+
+.meal-carousel .indicators [data-bs-target]:hover {
+    transform: scale(1.2);
+    background-color: var(--primary-color);
+}
+
+
+/* ===== Additions: captions + small-screen tweaks ===== */
+.food-caption { display: block; text-align: center; font-weight: 600; padding: 8px 0; color: inherit; }
+
+@media (max-width: 768px) {
+    .main-content { padding: 12px; }
+    /* Open sidebar overlays the page instead of squeezing it */
+    .sidebar:not(.close) ~ .main-content { margin-left: 88px; }
+    .sidebar:not(.close) ~ .layer { left: 88px; width: calc(100% - 88px); }
+    .layer { padding: 24px 12px 60px; }
+    .image-grid img { width: 100%; height: auto; }
+}
